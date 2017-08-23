@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="paypalCalculatorApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paypal Calculator</title>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <script src="bower_components/angular/angular.js"></script>
+</head>
+<body>
+
+<div class="container" ng-controller="paypalCalculatorCtrl as vm">
+
+    <h1>Paypal Gebührenrechner</h1>
+
+    <div class="entry-content">
+        <div class="container">
+
+            <p>Sie sind ein echter Shopperholic und liebes in Internet einzukaufen? Paypal ist dabei eine sehr einfache
+                und sichere Zahlungsart. Jedoch muss ab und zu auch einmal der Keller, Dachboden oder Kleiderschrank
+                ausgemistet werden. Vielen kann mit wenigen Klicks auf ebay zu Geld gemacht werden. Hier kann der Käufen
+                ebenfalls sicher und schnell mit Paypal die Waren bezahlen. Als Verkäufer fallen dabei leider Kosten auf
+                ihrer Seite an. Diese Gebühren richten sich nach dem Geldbetrag, dem Land aus dem das Geld kommt und
+                einigen weiteren Gegebenheiten. Unser Paypal Gebührenrechner hilft Ihnen, die Gebühren für PayPal
+                Deutschland zu berechnen. So erleben Sie keine böse Überraschung und wissen, wie viel Gebühren Sie durch
+                den Verkauf bezahlen müssen.</p>
+            <p>Wir bieten Ihnen jedoch nicht nur den Paypal Gebührenrechner, sondern auch den Rückwärts Rechner. Hier
+                geben Sie den Betrag ein, der nach Abzug der Gebühr noch übrig bleiben soll. Unser Rechner zeigt ihnen
+                dann an, wie viel an Paypal Gebühren anfällt.</p>
+            <p>Wir haben uns die größte Mühe gegeben, alle notwendigen Variabeln bei der Berechnung zu berücksichtigen,
+                übernehmen jedoch keinerlei Haftung für die Richtigkeit der Werte.</p>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <div class="well" style="height: 275px;">Empfangen&nbsp;<p></p>
+                        <div class="input-prepend">
+                            <span id="currency_symbol_3" class="add-on"></span>
+                            <input id="if_you_receive"
+                                   name="if_you_receive"
+                                   size="20"
+                                   type="text"
+                                   placeholder="Betrag eingeben.." ng-change="vm.calculatePaypalFee()"
+                                   ng-model="vm.gainedValue"> €
+                        </div>
+                        <div style="font-size: 10px; color: grey;">Geben Sie hier den Betrag ein, den Sie vom Sender
+                            erhalten haben, z.B. den Kaufpreis.
+                        </div>
+                        <div class=""></div>
+                        <div class="pull-left"><p><label for="paypal_fees">Paypal Gebühr:</label></p>
+                            <div class="input-prepend"><span id="currency_symbol_4" class="add-on"></span><input
+                                    id="paypal_fees" class="uneditable-input" disabled="disabled" name="paypal_fees"
+                                    size="6" type="text" ng-model="vm.paypalFeeString"> €
+                            </div>
+                        </div>
+                        <div class="pull-right"><p><label>Sie erhalten:</label></p>
+                            <div class="input-prepend "><span id="currency_symbol_5" class="add-on"></span><input
+                                    id="you_would_receive" class="uneditable-input" disabled="disabled"
+                                    name="you_would_receive" size="6" type="text" ng-model="vm.youGetValueString"> €
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <div class="well" style="height: 275px;">Restbetrag&nbsp;<p></p>
+                        <div class="input-prepend"><span id="currency_symbol_1" class="add-on"></span><input
+                                id="to_receive" name="to_receive" size="20" type="text" placeholder="Betrag eingeben.." ng-change="vm.calculateRestValue()" ng-model="vm.restValue">
+                            €
+                        </div>
+                        <div style="font-size: 10px; color: grey;">Geben Sie hier den Betrag ein, der nach Abzug der
+                            PayPal Gebühren übrig bleiben soll.
+                        </div>
+                        <p><label>Der Käufer muss zahlen:</label></p>
+                        <div class="input-prepend"><span id="currency_symbol_2" class="add-on"></span><input
+                                id="a_person_would" class="uneditable-input" disabled="disabled" name="a_person_would"
+                                size="20" type="text" ng-model="vm.buyerHasToPayValueString"> €
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <h2>Bezahlen mit Paypal</h2>
+
+            <p>Bezahlen in Euro ist in jedem Fall gebührenfrei. Nicht Gebührenfrei sind Geldsendungen, die nicht in Euro getätigt werden. Erst beim Verkauf von Waren entstehen Paypal Gebühren, die der Verkäufer zu tragen hat. In den meisten Fällen zahlen Sie lediglich 1,9% + 0,35 Euro pro Transaktion oder sogar noch weniger.</p>
+
+            <h2>Verkaufen mit Paypal – mit niedrigen Gebühren</h2>
+
+            <p>Erst bei einem Verkauf bzw. Geldempfang erhebt Paypal Gebühr von 1,9% + 0,35 Euro. Außerhalb der EU gelten die Gebühren für weltweite Zahlungen.<br></p>
+
+            <p>
+
+
+            </p>
+            <table id="tablepress-1" class="tablepress tablepress-id-1"><tbody><tr class="row-1"><td class="column-1">Zahlungsempfang</td><td class="column-2">1,9% + 0,35€ in Euro sowie in Schwedischen Kronen aus Deutschland, der EU, Norwegen, Island und Liechtenstein</td></tr><tr class="row-2"><td class="column-1">Händlerkonditionen*</td><td class="column-2">1,7% + 0,35€ (5.001 - 25.000€)<br> 1,5% + 0,35€ (über 25.000€)<br> <br> *muss beantragt werden</td></tr><tr class="row-3"><td class="column-1">PayPal PLUS Konditionen</td><td class="column-2">2,49% + 0,35€ (weniger als 5.000€)<br> 2,09% + 0,35€ (5.001 – 25.000€)<br> 1,79% + 0,35€ (über 25.000€)</td></tr><tr class="row-4"><td class="column-1">Mikrozahlungen</td><td class="column-2">10% + 0,10€</td></tr><tr class="row-5"><td class="column-1">Spenden sammeln</td><td class="column-2">1,5% + 0,35€</td></tr></tbody></table>
+
+            <p>Gerade als Verkäufer sollten Sie die Paypal Gebühren genau im Kopf haben. Da es jedoch einige Sonderfälle und Ausnahmen gibt, ist das Ganze leichter gesagt als getan. Im Kopf lassen sich die Gebühren auf keinen Fall berechnen – dafür gibt es ja unseren Gebührenrechner. Die Höhe der fälligen Paypal Gebühr ist dabei von vielen Faktoren abhängig. Die Nutzung unseres Tools ist für Sie vollkommen kostenlos und kinderleicht. Alles was Sie in den Paypal Gebührenrechner eintippen müssen ist der Gelbbetrag der empfangen werden soll oder dank unserem „Rückwerts Rechner“ den Betrag, den der am Ende übrig sein soll.<br> Wir haben zwei Beispiele für Sie zusammengestellt:</p>
+
+            <h3>Beispiel 1:</h3>
+
+            <p>Sie möchten ihrem Sohn 500€ schicken, die er für eine Reise benötigt. Da es sich hier um keine gewerbliche Transaktion handelt, wird keinerlei Gebühr berechnet.</p>
+
+            <h3>Beispiel 2:</h3>
+
+            <p>Als Händler empfangen Sie 250€ für Waren und Dienstleistungen von einem Kunden. Hier fallen nun 5,10€ an Paypal Gebühren an. Übrig für Sie bleiben anschließend noch 244,90€.</p>
+
+
+
+
+        </div>
+    </div>
+
+
+
+</div>
+
+
+</body>
+<script src="js/app.js"></script>
+<script src="js/controller/paypalCalculatorCtrl.js"></script>
+</html>
